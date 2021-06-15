@@ -1,0 +1,18 @@
+int x; int i; int num; int menor;
+
+num = read();
+
+for (i = 0; i<num; i = i + 1) {
+
+	x = read();
+
+	if (i == 0) {
+		menor = x;
+	} else {
+		if (x < menor) {
+			menor = x;
+		};
+	};
+};
+
+print(menor);

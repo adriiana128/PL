@@ -1,0 +1,1967 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> Programa
+Rule 1     Programa -> BlocoDeclarativo BlocoInstrutivo
+Rule 2     BlocoDeclarativo -> <empty>
+Rule 3     BlocoDeclarativo -> BlocoDeclarativo Declaracao ;
+Rule 4     BlocoInstrutivo -> <empty>
+Rule 5     BlocoInstrutivo -> BlocoInstrutivo Instrucao ;
+Rule 6     Declaracao -> INT ID
+Rule 7     Declaracao -> INT ID [ NUM ]
+Rule 8     Instrucao -> Atribuicao
+Rule 9     Instrucao -> IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+Rule 10    Instrucao -> IF ( Condicao ) { BlocoInstrutivo }
+Rule 11    Instrucao -> FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+Rule 12    Instrucao -> WHILE ( Condicao ) { BlocoInstrutivo }
+Rule 13    Instrucao -> PRINT ( ID )
+Rule 14    Instrucao -> PRINT ( Exp )
+Rule 15    Instrucao -> PRINT ( ID [ Exp ] )
+Rule 16    Atribuicao -> ID = Exp
+Rule 17    Atribuicao -> ID [ Exp ] = Exp
+Rule 18    Atribuicao -> ID = READ ( )
+Rule 19    Atribuicao -> ID [ Exp ] = READ ( )
+Rule 20    Condicao -> Condicao EQUALS Afirmacao
+Rule 21    Condicao -> Condicao CONJ Afirmacao
+Rule 22    Condicao -> Condicao DISJ Afirmacao
+Rule 23    Condicao -> Condicao NOTEQUAL Afirmacao
+Rule 24    Condicao -> Afirmacao
+Rule 25    Afirmacao -> ! Afirmacao
+Rule 26    Afirmacao -> TRUE
+Rule 27    Afirmacao -> FALSE
+Rule 28    Afirmacao -> Exp > Exp
+Rule 29    Afirmacao -> Exp < Exp
+Rule 30    Afirmacao -> Exp GREATEQUAL Exp
+Rule 31    Afirmacao -> Exp LOWEREQUAL Exp
+Rule 32    Afirmacao -> Exp EQUALS Exp
+Rule 33    Afirmacao -> Exp NOTEQUAL Exp
+Rule 34    Exp -> Exp + Termo
+Rule 35    Exp -> Exp - Termo
+Rule 36    Exp -> Termo
+Rule 37    Termo -> Termo * Fator
+Rule 38    Termo -> Termo / Fator
+Rule 39    Termo -> Termo % Fator
+Rule 40    Termo -> Fator
+Rule 41    Fator -> ID [ Exp ]
+Rule 42    Fator -> NUM
+Rule 43    Fator -> ID
+Rule 44    Fator -> ( Exp )
+
+Terminals, with rules where they appear
+
+!                    : 25
+%                    : 39
+(                    : 9 10 11 12 13 14 15 18 19 44
+)                    : 9 10 11 12 13 14 15 18 19 44
+*                    : 37
++                    : 34
+-                    : 35
+/                    : 38
+;                    : 3 5 11 11
+<                    : 29
+=                    : 16 17 18 19
+>                    : 28
+CONJ                 : 21
+DISJ                 : 22
+ELSE                 : 9
+EQUALS               : 20 32
+FALSE                : 27
+FOR                  : 11
+GREATEQUAL           : 30
+ID                   : 6 7 13 15 16 17 18 19 41 43
+IF                   : 9 10
+INT                  : 6 7
+LOWEREQUAL           : 31
+NOTEQUAL             : 23 33
+NUM                  : 7 42
+PRINT                : 13 14 15
+READ                 : 18 19
+TRUE                 : 26
+WHILE                : 12
+[                    : 7 15 17 19 41
+]                    : 7 15 17 19 41
+error                : 
+{                    : 9 9 10 11 12
+}                    : 9 9 10 11 12
+
+Nonterminals, with rules where they appear
+
+Afirmacao            : 20 21 22 23 24 25
+Atribuicao           : 8 11 11
+BlocoDeclarativo     : 1 3
+BlocoInstrutivo      : 1 5 9 9 10 11 12
+Condicao             : 9 10 11 12 20 21 22 23
+Declaracao           : 3
+Exp                  : 14 15 16 17 17 19 28 28 29 29 30 30 31 31 32 32 33 33 34 35 41 44
+Fator                : 37 38 39 40
+Instrucao            : 5
+Programa             : 0
+Termo                : 34 35 36 37 38 39
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . Programa
+    (1) Programa -> . BlocoDeclarativo BlocoInstrutivo
+    (2) BlocoDeclarativo -> .
+    (3) BlocoDeclarativo -> . BlocoDeclarativo Declaracao ;
+
+    INT             reduce using rule 2 (BlocoDeclarativo -> .)
+    IF              reduce using rule 2 (BlocoDeclarativo -> .)
+    FOR             reduce using rule 2 (BlocoDeclarativo -> .)
+    WHILE           reduce using rule 2 (BlocoDeclarativo -> .)
+    PRINT           reduce using rule 2 (BlocoDeclarativo -> .)
+    ID              reduce using rule 2 (BlocoDeclarativo -> .)
+    $end            reduce using rule 2 (BlocoDeclarativo -> .)
+
+    Programa                       shift and go to state 1
+    BlocoDeclarativo               shift and go to state 2
+
+state 1
+
+    (0) S' -> Programa .
+
+
+
+state 2
+
+    (1) Programa -> BlocoDeclarativo . BlocoInstrutivo
+    (3) BlocoDeclarativo -> BlocoDeclarativo . Declaracao ;
+    (4) BlocoInstrutivo -> .
+    (5) BlocoInstrutivo -> . BlocoInstrutivo Instrucao ;
+    (6) Declaracao -> . INT ID
+    (7) Declaracao -> . INT ID [ NUM ]
+
+    IF              reduce using rule 4 (BlocoInstrutivo -> .)
+    FOR             reduce using rule 4 (BlocoInstrutivo -> .)
+    WHILE           reduce using rule 4 (BlocoInstrutivo -> .)
+    PRINT           reduce using rule 4 (BlocoInstrutivo -> .)
+    ID              reduce using rule 4 (BlocoInstrutivo -> .)
+    $end            reduce using rule 4 (BlocoInstrutivo -> .)
+    INT             shift and go to state 5
+
+    BlocoInstrutivo                shift and go to state 3
+    Declaracao                     shift and go to state 4
+
+state 3
+
+    (1) Programa -> BlocoDeclarativo BlocoInstrutivo .
+    (5) BlocoInstrutivo -> BlocoInstrutivo . Instrucao ;
+    (8) Instrucao -> . Atribuicao
+    (9) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo }
+    (11) Instrucao -> . FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+    (12) Instrucao -> . WHILE ( Condicao ) { BlocoInstrutivo }
+    (13) Instrucao -> . PRINT ( ID )
+    (14) Instrucao -> . PRINT ( Exp )
+    (15) Instrucao -> . PRINT ( ID [ Exp ] )
+    (16) Atribuicao -> . ID = Exp
+    (17) Atribuicao -> . ID [ Exp ] = Exp
+    (18) Atribuicao -> . ID = READ ( )
+    (19) Atribuicao -> . ID [ Exp ] = READ ( )
+
+    $end            reduce using rule 1 (Programa -> BlocoDeclarativo BlocoInstrutivo .)
+    IF              shift and go to state 8
+    FOR             shift and go to state 9
+    WHILE           shift and go to state 10
+    PRINT           shift and go to state 11
+    ID              shift and go to state 12
+
+    Instrucao                      shift and go to state 6
+    Atribuicao                     shift and go to state 7
+
+state 4
+
+    (3) BlocoDeclarativo -> BlocoDeclarativo Declaracao . ;
+
+    ;               shift and go to state 13
+
+
+state 5
+
+    (6) Declaracao -> INT . ID
+    (7) Declaracao -> INT . ID [ NUM ]
+
+    ID              shift and go to state 14
+
+
+state 6
+
+    (5) BlocoInstrutivo -> BlocoInstrutivo Instrucao . ;
+
+    ;               shift and go to state 15
+
+
+state 7
+
+    (8) Instrucao -> Atribuicao .
+
+    ;               reduce using rule 8 (Instrucao -> Atribuicao .)
+
+
+state 8
+
+    (9) Instrucao -> IF . ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> IF . ( Condicao ) { BlocoInstrutivo }
+
+    (               shift and go to state 16
+
+
+state 9
+
+    (11) Instrucao -> FOR . ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+
+    (               shift and go to state 17
+
+
+state 10
+
+    (12) Instrucao -> WHILE . ( Condicao ) { BlocoInstrutivo }
+
+    (               shift and go to state 18
+
+
+state 11
+
+    (13) Instrucao -> PRINT . ( ID )
+    (14) Instrucao -> PRINT . ( Exp )
+    (15) Instrucao -> PRINT . ( ID [ Exp ] )
+
+    (               shift and go to state 19
+
+
+state 12
+
+    (16) Atribuicao -> ID . = Exp
+    (17) Atribuicao -> ID . [ Exp ] = Exp
+    (18) Atribuicao -> ID . = READ ( )
+    (19) Atribuicao -> ID . [ Exp ] = READ ( )
+
+    =               shift and go to state 20
+    [               shift and go to state 21
+
+
+state 13
+
+    (3) BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .
+
+    INT             reduce using rule 3 (BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .)
+    IF              reduce using rule 3 (BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .)
+    FOR             reduce using rule 3 (BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .)
+    WHILE           reduce using rule 3 (BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .)
+    PRINT           reduce using rule 3 (BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .)
+    ID              reduce using rule 3 (BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .)
+    $end            reduce using rule 3 (BlocoDeclarativo -> BlocoDeclarativo Declaracao ; .)
+
+
+state 14
+
+    (6) Declaracao -> INT ID .
+    (7) Declaracao -> INT ID . [ NUM ]
+
+    ;               reduce using rule 6 (Declaracao -> INT ID .)
+    [               shift and go to state 22
+
+
+state 15
+
+    (5) BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .
+
+    IF              reduce using rule 5 (BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .)
+    FOR             reduce using rule 5 (BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .)
+    WHILE           reduce using rule 5 (BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .)
+    PRINT           reduce using rule 5 (BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .)
+    ID              reduce using rule 5 (BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .)
+    $end            reduce using rule 5 (BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .)
+    }               reduce using rule 5 (BlocoInstrutivo -> BlocoInstrutivo Instrucao ; .)
+
+
+state 16
+
+    (9) Instrucao -> IF ( . Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> IF ( . Condicao ) { BlocoInstrutivo }
+    (20) Condicao -> . Condicao EQUALS Afirmacao
+    (21) Condicao -> . Condicao CONJ Afirmacao
+    (22) Condicao -> . Condicao DISJ Afirmacao
+    (23) Condicao -> . Condicao NOTEQUAL Afirmacao
+    (24) Condicao -> . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Condicao                       shift and go to state 24
+    Afirmacao                      shift and go to state 25
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 17
+
+    (11) Instrucao -> FOR ( . Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+    (16) Atribuicao -> . ID = Exp
+    (17) Atribuicao -> . ID [ Exp ] = Exp
+    (18) Atribuicao -> . ID = READ ( )
+    (19) Atribuicao -> . ID [ Exp ] = READ ( )
+
+    ID              shift and go to state 12
+
+    Atribuicao                     shift and go to state 34
+
+state 18
+
+    (12) Instrucao -> WHILE ( . Condicao ) { BlocoInstrutivo }
+    (20) Condicao -> . Condicao EQUALS Afirmacao
+    (21) Condicao -> . Condicao CONJ Afirmacao
+    (22) Condicao -> . Condicao DISJ Afirmacao
+    (23) Condicao -> . Condicao NOTEQUAL Afirmacao
+    (24) Condicao -> . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Condicao                       shift and go to state 35
+    Afirmacao                      shift and go to state 25
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 19
+
+    (13) Instrucao -> PRINT ( . ID )
+    (14) Instrucao -> PRINT ( . Exp )
+    (15) Instrucao -> PRINT ( . ID [ Exp ] )
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 36
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 37
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 20
+
+    (16) Atribuicao -> ID = . Exp
+    (18) Atribuicao -> ID = . READ ( )
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    READ            shift and go to state 39
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 38
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 21
+
+    (17) Atribuicao -> ID [ . Exp ] = Exp
+    (19) Atribuicao -> ID [ . Exp ] = READ ( )
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 40
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 22
+
+    (7) Declaracao -> INT ID [ . NUM ]
+
+    NUM             shift and go to state 41
+
+
+state 23
+
+    (44) Fator -> ( . Exp )
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 42
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 24
+
+    (9) Instrucao -> IF ( Condicao . ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> IF ( Condicao . ) { BlocoInstrutivo }
+    (20) Condicao -> Condicao . EQUALS Afirmacao
+    (21) Condicao -> Condicao . CONJ Afirmacao
+    (22) Condicao -> Condicao . DISJ Afirmacao
+    (23) Condicao -> Condicao . NOTEQUAL Afirmacao
+
+    )               shift and go to state 43
+    EQUALS          shift and go to state 44
+    CONJ            shift and go to state 45
+    DISJ            shift and go to state 46
+    NOTEQUAL        shift and go to state 47
+
+
+state 25
+
+    (24) Condicao -> Afirmacao .
+
+    )               reduce using rule 24 (Condicao -> Afirmacao .)
+    EQUALS          reduce using rule 24 (Condicao -> Afirmacao .)
+    CONJ            reduce using rule 24 (Condicao -> Afirmacao .)
+    DISJ            reduce using rule 24 (Condicao -> Afirmacao .)
+    NOTEQUAL        reduce using rule 24 (Condicao -> Afirmacao .)
+    ;               reduce using rule 24 (Condicao -> Afirmacao .)
+
+
+state 26
+
+    (25) Afirmacao -> ! . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Afirmacao                      shift and go to state 48
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 27
+
+    (26) Afirmacao -> TRUE .
+
+    )               reduce using rule 26 (Afirmacao -> TRUE .)
+    EQUALS          reduce using rule 26 (Afirmacao -> TRUE .)
+    CONJ            reduce using rule 26 (Afirmacao -> TRUE .)
+    DISJ            reduce using rule 26 (Afirmacao -> TRUE .)
+    NOTEQUAL        reduce using rule 26 (Afirmacao -> TRUE .)
+    ;               reduce using rule 26 (Afirmacao -> TRUE .)
+
+
+state 28
+
+    (27) Afirmacao -> FALSE .
+
+    )               reduce using rule 27 (Afirmacao -> FALSE .)
+    EQUALS          reduce using rule 27 (Afirmacao -> FALSE .)
+    CONJ            reduce using rule 27 (Afirmacao -> FALSE .)
+    DISJ            reduce using rule 27 (Afirmacao -> FALSE .)
+    NOTEQUAL        reduce using rule 27 (Afirmacao -> FALSE .)
+    ;               reduce using rule 27 (Afirmacao -> FALSE .)
+
+
+state 29
+
+    (28) Afirmacao -> Exp . > Exp
+    (29) Afirmacao -> Exp . < Exp
+    (30) Afirmacao -> Exp . GREATEQUAL Exp
+    (31) Afirmacao -> Exp . LOWEREQUAL Exp
+    (32) Afirmacao -> Exp . EQUALS Exp
+    (33) Afirmacao -> Exp . NOTEQUAL Exp
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    >               shift and go to state 49
+    <               shift and go to state 50
+    GREATEQUAL      shift and go to state 51
+    LOWEREQUAL      shift and go to state 52
+    EQUALS          shift and go to state 53
+    NOTEQUAL        shift and go to state 54
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 30
+
+    (36) Exp -> Termo .
+    (37) Termo -> Termo . * Fator
+    (38) Termo -> Termo . / Fator
+    (39) Termo -> Termo . % Fator
+
+    >               reduce using rule 36 (Exp -> Termo .)
+    <               reduce using rule 36 (Exp -> Termo .)
+    GREATEQUAL      reduce using rule 36 (Exp -> Termo .)
+    LOWEREQUAL      reduce using rule 36 (Exp -> Termo .)
+    EQUALS          reduce using rule 36 (Exp -> Termo .)
+    NOTEQUAL        reduce using rule 36 (Exp -> Termo .)
+    +               reduce using rule 36 (Exp -> Termo .)
+    -               reduce using rule 36 (Exp -> Termo .)
+    )               reduce using rule 36 (Exp -> Termo .)
+    ;               reduce using rule 36 (Exp -> Termo .)
+    ]               reduce using rule 36 (Exp -> Termo .)
+    CONJ            reduce using rule 36 (Exp -> Termo .)
+    DISJ            reduce using rule 36 (Exp -> Termo .)
+    *               shift and go to state 57
+    /               shift and go to state 58
+    %               shift and go to state 59
+
+
+state 31
+
+    (40) Termo -> Fator .
+
+    *               reduce using rule 40 (Termo -> Fator .)
+    /               reduce using rule 40 (Termo -> Fator .)
+    %               reduce using rule 40 (Termo -> Fator .)
+    >               reduce using rule 40 (Termo -> Fator .)
+    <               reduce using rule 40 (Termo -> Fator .)
+    GREATEQUAL      reduce using rule 40 (Termo -> Fator .)
+    LOWEREQUAL      reduce using rule 40 (Termo -> Fator .)
+    EQUALS          reduce using rule 40 (Termo -> Fator .)
+    NOTEQUAL        reduce using rule 40 (Termo -> Fator .)
+    +               reduce using rule 40 (Termo -> Fator .)
+    -               reduce using rule 40 (Termo -> Fator .)
+    )               reduce using rule 40 (Termo -> Fator .)
+    ;               reduce using rule 40 (Termo -> Fator .)
+    ]               reduce using rule 40 (Termo -> Fator .)
+    CONJ            reduce using rule 40 (Termo -> Fator .)
+    DISJ            reduce using rule 40 (Termo -> Fator .)
+
+
+state 32
+
+    (41) Fator -> ID . [ Exp ]
+    (43) Fator -> ID .
+
+    [               shift and go to state 60
+    *               reduce using rule 43 (Fator -> ID .)
+    /               reduce using rule 43 (Fator -> ID .)
+    %               reduce using rule 43 (Fator -> ID .)
+    >               reduce using rule 43 (Fator -> ID .)
+    <               reduce using rule 43 (Fator -> ID .)
+    GREATEQUAL      reduce using rule 43 (Fator -> ID .)
+    LOWEREQUAL      reduce using rule 43 (Fator -> ID .)
+    EQUALS          reduce using rule 43 (Fator -> ID .)
+    NOTEQUAL        reduce using rule 43 (Fator -> ID .)
+    +               reduce using rule 43 (Fator -> ID .)
+    -               reduce using rule 43 (Fator -> ID .)
+    ;               reduce using rule 43 (Fator -> ID .)
+    )               reduce using rule 43 (Fator -> ID .)
+    ]               reduce using rule 43 (Fator -> ID .)
+    CONJ            reduce using rule 43 (Fator -> ID .)
+    DISJ            reduce using rule 43 (Fator -> ID .)
+
+
+state 33
+
+    (42) Fator -> NUM .
+
+    *               reduce using rule 42 (Fator -> NUM .)
+    /               reduce using rule 42 (Fator -> NUM .)
+    %               reduce using rule 42 (Fator -> NUM .)
+    >               reduce using rule 42 (Fator -> NUM .)
+    <               reduce using rule 42 (Fator -> NUM .)
+    GREATEQUAL      reduce using rule 42 (Fator -> NUM .)
+    LOWEREQUAL      reduce using rule 42 (Fator -> NUM .)
+    EQUALS          reduce using rule 42 (Fator -> NUM .)
+    NOTEQUAL        reduce using rule 42 (Fator -> NUM .)
+    +               reduce using rule 42 (Fator -> NUM .)
+    -               reduce using rule 42 (Fator -> NUM .)
+    )               reduce using rule 42 (Fator -> NUM .)
+    ;               reduce using rule 42 (Fator -> NUM .)
+    ]               reduce using rule 42 (Fator -> NUM .)
+    CONJ            reduce using rule 42 (Fator -> NUM .)
+    DISJ            reduce using rule 42 (Fator -> NUM .)
+
+
+state 34
+
+    (11) Instrucao -> FOR ( Atribuicao . ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+
+    ;               shift and go to state 61
+
+
+state 35
+
+    (12) Instrucao -> WHILE ( Condicao . ) { BlocoInstrutivo }
+    (20) Condicao -> Condicao . EQUALS Afirmacao
+    (21) Condicao -> Condicao . CONJ Afirmacao
+    (22) Condicao -> Condicao . DISJ Afirmacao
+    (23) Condicao -> Condicao . NOTEQUAL Afirmacao
+
+    )               shift and go to state 62
+    EQUALS          shift and go to state 44
+    CONJ            shift and go to state 45
+    DISJ            shift and go to state 46
+    NOTEQUAL        shift and go to state 47
+
+
+state 36
+
+    (13) Instrucao -> PRINT ( ID . )
+    (15) Instrucao -> PRINT ( ID . [ Exp ] )
+    (41) Fator -> ID . [ Exp ]
+    (43) Fator -> ID .
+
+  ! shift/reduce conflict for ) resolved as shift
+    )               shift and go to state 63
+    [               shift and go to state 64
+    *               reduce using rule 43 (Fator -> ID .)
+    /               reduce using rule 43 (Fator -> ID .)
+    %               reduce using rule 43 (Fator -> ID .)
+    +               reduce using rule 43 (Fator -> ID .)
+    -               reduce using rule 43 (Fator -> ID .)
+
+  ! )               [ reduce using rule 43 (Fator -> ID .) ]
+
+
+state 37
+
+    (14) Instrucao -> PRINT ( Exp . )
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               shift and go to state 65
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 38
+
+    (16) Atribuicao -> ID = Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    ;               reduce using rule 16 (Atribuicao -> ID = Exp .)
+    )               reduce using rule 16 (Atribuicao -> ID = Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 39
+
+    (18) Atribuicao -> ID = READ . ( )
+
+    (               shift and go to state 66
+
+
+state 40
+
+    (17) Atribuicao -> ID [ Exp . ] = Exp
+    (19) Atribuicao -> ID [ Exp . ] = READ ( )
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    ]               shift and go to state 67
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 41
+
+    (7) Declaracao -> INT ID [ NUM . ]
+
+    ]               shift and go to state 68
+
+
+state 42
+
+    (44) Fator -> ( Exp . )
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               shift and go to state 69
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 43
+
+    (9) Instrucao -> IF ( Condicao ) . { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> IF ( Condicao ) . { BlocoInstrutivo }
+
+    {               shift and go to state 70
+
+
+state 44
+
+    (20) Condicao -> Condicao EQUALS . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Afirmacao                      shift and go to state 71
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 45
+
+    (21) Condicao -> Condicao CONJ . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Afirmacao                      shift and go to state 72
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 46
+
+    (22) Condicao -> Condicao DISJ . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Afirmacao                      shift and go to state 73
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 47
+
+    (23) Condicao -> Condicao NOTEQUAL . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Afirmacao                      shift and go to state 74
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 48
+
+    (25) Afirmacao -> ! Afirmacao .
+
+    )               reduce using rule 25 (Afirmacao -> ! Afirmacao .)
+    EQUALS          reduce using rule 25 (Afirmacao -> ! Afirmacao .)
+    CONJ            reduce using rule 25 (Afirmacao -> ! Afirmacao .)
+    DISJ            reduce using rule 25 (Afirmacao -> ! Afirmacao .)
+    NOTEQUAL        reduce using rule 25 (Afirmacao -> ! Afirmacao .)
+    ;               reduce using rule 25 (Afirmacao -> ! Afirmacao .)
+
+
+state 49
+
+    (28) Afirmacao -> Exp > . Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 75
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 50
+
+    (29) Afirmacao -> Exp < . Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 76
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 51
+
+    (30) Afirmacao -> Exp GREATEQUAL . Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 77
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 52
+
+    (31) Afirmacao -> Exp LOWEREQUAL . Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 78
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 53
+
+    (32) Afirmacao -> Exp EQUALS . Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 79
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 54
+
+    (33) Afirmacao -> Exp NOTEQUAL . Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 80
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 55
+
+    (34) Exp -> Exp + . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Termo                          shift and go to state 81
+    Fator                          shift and go to state 31
+
+state 56
+
+    (35) Exp -> Exp - . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Termo                          shift and go to state 82
+    Fator                          shift and go to state 31
+
+state 57
+
+    (37) Termo -> Termo * . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Fator                          shift and go to state 83
+
+state 58
+
+    (38) Termo -> Termo / . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Fator                          shift and go to state 84
+
+state 59
+
+    (39) Termo -> Termo % . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Fator                          shift and go to state 85
+
+state 60
+
+    (41) Fator -> ID [ . Exp ]
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 86
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 61
+
+    (11) Instrucao -> FOR ( Atribuicao ; . Condicao ; Atribuicao ) { BlocoInstrutivo }
+    (20) Condicao -> . Condicao EQUALS Afirmacao
+    (21) Condicao -> . Condicao CONJ Afirmacao
+    (22) Condicao -> . Condicao DISJ Afirmacao
+    (23) Condicao -> . Condicao NOTEQUAL Afirmacao
+    (24) Condicao -> . Afirmacao
+    (25) Afirmacao -> . ! Afirmacao
+    (26) Afirmacao -> . TRUE
+    (27) Afirmacao -> . FALSE
+    (28) Afirmacao -> . Exp > Exp
+    (29) Afirmacao -> . Exp < Exp
+    (30) Afirmacao -> . Exp GREATEQUAL Exp
+    (31) Afirmacao -> . Exp LOWEREQUAL Exp
+    (32) Afirmacao -> . Exp EQUALS Exp
+    (33) Afirmacao -> . Exp NOTEQUAL Exp
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    !               shift and go to state 26
+    TRUE            shift and go to state 27
+    FALSE           shift and go to state 28
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Condicao                       shift and go to state 87
+    Afirmacao                      shift and go to state 25
+    Exp                            shift and go to state 29
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 62
+
+    (12) Instrucao -> WHILE ( Condicao ) . { BlocoInstrutivo }
+
+    {               shift and go to state 88
+
+
+state 63
+
+    (13) Instrucao -> PRINT ( ID ) .
+
+    ;               reduce using rule 13 (Instrucao -> PRINT ( ID ) .)
+
+
+state 64
+
+    (15) Instrucao -> PRINT ( ID [ . Exp ] )
+    (41) Fator -> ID [ . Exp ]
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 89
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 65
+
+    (14) Instrucao -> PRINT ( Exp ) .
+
+    ;               reduce using rule 14 (Instrucao -> PRINT ( Exp ) .)
+
+
+state 66
+
+    (18) Atribuicao -> ID = READ ( . )
+
+    )               shift and go to state 90
+
+
+state 67
+
+    (17) Atribuicao -> ID [ Exp ] . = Exp
+    (19) Atribuicao -> ID [ Exp ] . = READ ( )
+
+    =               shift and go to state 91
+
+
+state 68
+
+    (7) Declaracao -> INT ID [ NUM ] .
+
+    ;               reduce using rule 7 (Declaracao -> INT ID [ NUM ] .)
+
+
+state 69
+
+    (44) Fator -> ( Exp ) .
+
+    *               reduce using rule 44 (Fator -> ( Exp ) .)
+    /               reduce using rule 44 (Fator -> ( Exp ) .)
+    %               reduce using rule 44 (Fator -> ( Exp ) .)
+    >               reduce using rule 44 (Fator -> ( Exp ) .)
+    <               reduce using rule 44 (Fator -> ( Exp ) .)
+    GREATEQUAL      reduce using rule 44 (Fator -> ( Exp ) .)
+    LOWEREQUAL      reduce using rule 44 (Fator -> ( Exp ) .)
+    EQUALS          reduce using rule 44 (Fator -> ( Exp ) .)
+    NOTEQUAL        reduce using rule 44 (Fator -> ( Exp ) .)
+    +               reduce using rule 44 (Fator -> ( Exp ) .)
+    -               reduce using rule 44 (Fator -> ( Exp ) .)
+    )               reduce using rule 44 (Fator -> ( Exp ) .)
+    ;               reduce using rule 44 (Fator -> ( Exp ) .)
+    ]               reduce using rule 44 (Fator -> ( Exp ) .)
+    CONJ            reduce using rule 44 (Fator -> ( Exp ) .)
+    DISJ            reduce using rule 44 (Fator -> ( Exp ) .)
+
+
+state 70
+
+    (9) Instrucao -> IF ( Condicao ) { . BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> IF ( Condicao ) { . BlocoInstrutivo }
+    (4) BlocoInstrutivo -> .
+    (5) BlocoInstrutivo -> . BlocoInstrutivo Instrucao ;
+
+    }               reduce using rule 4 (BlocoInstrutivo -> .)
+    IF              reduce using rule 4 (BlocoInstrutivo -> .)
+    FOR             reduce using rule 4 (BlocoInstrutivo -> .)
+    WHILE           reduce using rule 4 (BlocoInstrutivo -> .)
+    PRINT           reduce using rule 4 (BlocoInstrutivo -> .)
+    ID              reduce using rule 4 (BlocoInstrutivo -> .)
+
+    BlocoInstrutivo                shift and go to state 92
+
+state 71
+
+    (20) Condicao -> Condicao EQUALS Afirmacao .
+
+    )               reduce using rule 20 (Condicao -> Condicao EQUALS Afirmacao .)
+    EQUALS          reduce using rule 20 (Condicao -> Condicao EQUALS Afirmacao .)
+    CONJ            reduce using rule 20 (Condicao -> Condicao EQUALS Afirmacao .)
+    DISJ            reduce using rule 20 (Condicao -> Condicao EQUALS Afirmacao .)
+    NOTEQUAL        reduce using rule 20 (Condicao -> Condicao EQUALS Afirmacao .)
+    ;               reduce using rule 20 (Condicao -> Condicao EQUALS Afirmacao .)
+
+
+state 72
+
+    (21) Condicao -> Condicao CONJ Afirmacao .
+
+    )               reduce using rule 21 (Condicao -> Condicao CONJ Afirmacao .)
+    EQUALS          reduce using rule 21 (Condicao -> Condicao CONJ Afirmacao .)
+    CONJ            reduce using rule 21 (Condicao -> Condicao CONJ Afirmacao .)
+    DISJ            reduce using rule 21 (Condicao -> Condicao CONJ Afirmacao .)
+    NOTEQUAL        reduce using rule 21 (Condicao -> Condicao CONJ Afirmacao .)
+    ;               reduce using rule 21 (Condicao -> Condicao CONJ Afirmacao .)
+
+
+state 73
+
+    (22) Condicao -> Condicao DISJ Afirmacao .
+
+    )               reduce using rule 22 (Condicao -> Condicao DISJ Afirmacao .)
+    EQUALS          reduce using rule 22 (Condicao -> Condicao DISJ Afirmacao .)
+    CONJ            reduce using rule 22 (Condicao -> Condicao DISJ Afirmacao .)
+    DISJ            reduce using rule 22 (Condicao -> Condicao DISJ Afirmacao .)
+    NOTEQUAL        reduce using rule 22 (Condicao -> Condicao DISJ Afirmacao .)
+    ;               reduce using rule 22 (Condicao -> Condicao DISJ Afirmacao .)
+
+
+state 74
+
+    (23) Condicao -> Condicao NOTEQUAL Afirmacao .
+
+    )               reduce using rule 23 (Condicao -> Condicao NOTEQUAL Afirmacao .)
+    EQUALS          reduce using rule 23 (Condicao -> Condicao NOTEQUAL Afirmacao .)
+    CONJ            reduce using rule 23 (Condicao -> Condicao NOTEQUAL Afirmacao .)
+    DISJ            reduce using rule 23 (Condicao -> Condicao NOTEQUAL Afirmacao .)
+    NOTEQUAL        reduce using rule 23 (Condicao -> Condicao NOTEQUAL Afirmacao .)
+    ;               reduce using rule 23 (Condicao -> Condicao NOTEQUAL Afirmacao .)
+
+
+state 75
+
+    (28) Afirmacao -> Exp > Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               reduce using rule 28 (Afirmacao -> Exp > Exp .)
+    EQUALS          reduce using rule 28 (Afirmacao -> Exp > Exp .)
+    CONJ            reduce using rule 28 (Afirmacao -> Exp > Exp .)
+    DISJ            reduce using rule 28 (Afirmacao -> Exp > Exp .)
+    NOTEQUAL        reduce using rule 28 (Afirmacao -> Exp > Exp .)
+    ;               reduce using rule 28 (Afirmacao -> Exp > Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 76
+
+    (29) Afirmacao -> Exp < Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               reduce using rule 29 (Afirmacao -> Exp < Exp .)
+    EQUALS          reduce using rule 29 (Afirmacao -> Exp < Exp .)
+    CONJ            reduce using rule 29 (Afirmacao -> Exp < Exp .)
+    DISJ            reduce using rule 29 (Afirmacao -> Exp < Exp .)
+    NOTEQUAL        reduce using rule 29 (Afirmacao -> Exp < Exp .)
+    ;               reduce using rule 29 (Afirmacao -> Exp < Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 77
+
+    (30) Afirmacao -> Exp GREATEQUAL Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               reduce using rule 30 (Afirmacao -> Exp GREATEQUAL Exp .)
+    EQUALS          reduce using rule 30 (Afirmacao -> Exp GREATEQUAL Exp .)
+    CONJ            reduce using rule 30 (Afirmacao -> Exp GREATEQUAL Exp .)
+    DISJ            reduce using rule 30 (Afirmacao -> Exp GREATEQUAL Exp .)
+    NOTEQUAL        reduce using rule 30 (Afirmacao -> Exp GREATEQUAL Exp .)
+    ;               reduce using rule 30 (Afirmacao -> Exp GREATEQUAL Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 78
+
+    (31) Afirmacao -> Exp LOWEREQUAL Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               reduce using rule 31 (Afirmacao -> Exp LOWEREQUAL Exp .)
+    EQUALS          reduce using rule 31 (Afirmacao -> Exp LOWEREQUAL Exp .)
+    CONJ            reduce using rule 31 (Afirmacao -> Exp LOWEREQUAL Exp .)
+    DISJ            reduce using rule 31 (Afirmacao -> Exp LOWEREQUAL Exp .)
+    NOTEQUAL        reduce using rule 31 (Afirmacao -> Exp LOWEREQUAL Exp .)
+    ;               reduce using rule 31 (Afirmacao -> Exp LOWEREQUAL Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 79
+
+    (32) Afirmacao -> Exp EQUALS Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               reduce using rule 32 (Afirmacao -> Exp EQUALS Exp .)
+    EQUALS          reduce using rule 32 (Afirmacao -> Exp EQUALS Exp .)
+    CONJ            reduce using rule 32 (Afirmacao -> Exp EQUALS Exp .)
+    DISJ            reduce using rule 32 (Afirmacao -> Exp EQUALS Exp .)
+    NOTEQUAL        reduce using rule 32 (Afirmacao -> Exp EQUALS Exp .)
+    ;               reduce using rule 32 (Afirmacao -> Exp EQUALS Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 80
+
+    (33) Afirmacao -> Exp NOTEQUAL Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    )               reduce using rule 33 (Afirmacao -> Exp NOTEQUAL Exp .)
+    EQUALS          reduce using rule 33 (Afirmacao -> Exp NOTEQUAL Exp .)
+    CONJ            reduce using rule 33 (Afirmacao -> Exp NOTEQUAL Exp .)
+    DISJ            reduce using rule 33 (Afirmacao -> Exp NOTEQUAL Exp .)
+    NOTEQUAL        reduce using rule 33 (Afirmacao -> Exp NOTEQUAL Exp .)
+    ;               reduce using rule 33 (Afirmacao -> Exp NOTEQUAL Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 81
+
+    (34) Exp -> Exp + Termo .
+    (37) Termo -> Termo . * Fator
+    (38) Termo -> Termo . / Fator
+    (39) Termo -> Termo . % Fator
+
+    >               reduce using rule 34 (Exp -> Exp + Termo .)
+    <               reduce using rule 34 (Exp -> Exp + Termo .)
+    GREATEQUAL      reduce using rule 34 (Exp -> Exp + Termo .)
+    LOWEREQUAL      reduce using rule 34 (Exp -> Exp + Termo .)
+    EQUALS          reduce using rule 34 (Exp -> Exp + Termo .)
+    NOTEQUAL        reduce using rule 34 (Exp -> Exp + Termo .)
+    +               reduce using rule 34 (Exp -> Exp + Termo .)
+    -               reduce using rule 34 (Exp -> Exp + Termo .)
+    )               reduce using rule 34 (Exp -> Exp + Termo .)
+    ;               reduce using rule 34 (Exp -> Exp + Termo .)
+    ]               reduce using rule 34 (Exp -> Exp + Termo .)
+    CONJ            reduce using rule 34 (Exp -> Exp + Termo .)
+    DISJ            reduce using rule 34 (Exp -> Exp + Termo .)
+    *               shift and go to state 57
+    /               shift and go to state 58
+    %               shift and go to state 59
+
+
+state 82
+
+    (35) Exp -> Exp - Termo .
+    (37) Termo -> Termo . * Fator
+    (38) Termo -> Termo . / Fator
+    (39) Termo -> Termo . % Fator
+
+    >               reduce using rule 35 (Exp -> Exp - Termo .)
+    <               reduce using rule 35 (Exp -> Exp - Termo .)
+    GREATEQUAL      reduce using rule 35 (Exp -> Exp - Termo .)
+    LOWEREQUAL      reduce using rule 35 (Exp -> Exp - Termo .)
+    EQUALS          reduce using rule 35 (Exp -> Exp - Termo .)
+    NOTEQUAL        reduce using rule 35 (Exp -> Exp - Termo .)
+    +               reduce using rule 35 (Exp -> Exp - Termo .)
+    -               reduce using rule 35 (Exp -> Exp - Termo .)
+    )               reduce using rule 35 (Exp -> Exp - Termo .)
+    ;               reduce using rule 35 (Exp -> Exp - Termo .)
+    ]               reduce using rule 35 (Exp -> Exp - Termo .)
+    CONJ            reduce using rule 35 (Exp -> Exp - Termo .)
+    DISJ            reduce using rule 35 (Exp -> Exp - Termo .)
+    *               shift and go to state 57
+    /               shift and go to state 58
+    %               shift and go to state 59
+
+
+state 83
+
+    (37) Termo -> Termo * Fator .
+
+    *               reduce using rule 37 (Termo -> Termo * Fator .)
+    /               reduce using rule 37 (Termo -> Termo * Fator .)
+    %               reduce using rule 37 (Termo -> Termo * Fator .)
+    >               reduce using rule 37 (Termo -> Termo * Fator .)
+    <               reduce using rule 37 (Termo -> Termo * Fator .)
+    GREATEQUAL      reduce using rule 37 (Termo -> Termo * Fator .)
+    LOWEREQUAL      reduce using rule 37 (Termo -> Termo * Fator .)
+    EQUALS          reduce using rule 37 (Termo -> Termo * Fator .)
+    NOTEQUAL        reduce using rule 37 (Termo -> Termo * Fator .)
+    +               reduce using rule 37 (Termo -> Termo * Fator .)
+    -               reduce using rule 37 (Termo -> Termo * Fator .)
+    )               reduce using rule 37 (Termo -> Termo * Fator .)
+    ;               reduce using rule 37 (Termo -> Termo * Fator .)
+    ]               reduce using rule 37 (Termo -> Termo * Fator .)
+    CONJ            reduce using rule 37 (Termo -> Termo * Fator .)
+    DISJ            reduce using rule 37 (Termo -> Termo * Fator .)
+
+
+state 84
+
+    (38) Termo -> Termo / Fator .
+
+    *               reduce using rule 38 (Termo -> Termo / Fator .)
+    /               reduce using rule 38 (Termo -> Termo / Fator .)
+    %               reduce using rule 38 (Termo -> Termo / Fator .)
+    >               reduce using rule 38 (Termo -> Termo / Fator .)
+    <               reduce using rule 38 (Termo -> Termo / Fator .)
+    GREATEQUAL      reduce using rule 38 (Termo -> Termo / Fator .)
+    LOWEREQUAL      reduce using rule 38 (Termo -> Termo / Fator .)
+    EQUALS          reduce using rule 38 (Termo -> Termo / Fator .)
+    NOTEQUAL        reduce using rule 38 (Termo -> Termo / Fator .)
+    +               reduce using rule 38 (Termo -> Termo / Fator .)
+    -               reduce using rule 38 (Termo -> Termo / Fator .)
+    )               reduce using rule 38 (Termo -> Termo / Fator .)
+    ;               reduce using rule 38 (Termo -> Termo / Fator .)
+    ]               reduce using rule 38 (Termo -> Termo / Fator .)
+    CONJ            reduce using rule 38 (Termo -> Termo / Fator .)
+    DISJ            reduce using rule 38 (Termo -> Termo / Fator .)
+
+
+state 85
+
+    (39) Termo -> Termo % Fator .
+
+    *               reduce using rule 39 (Termo -> Termo % Fator .)
+    /               reduce using rule 39 (Termo -> Termo % Fator .)
+    %               reduce using rule 39 (Termo -> Termo % Fator .)
+    >               reduce using rule 39 (Termo -> Termo % Fator .)
+    <               reduce using rule 39 (Termo -> Termo % Fator .)
+    GREATEQUAL      reduce using rule 39 (Termo -> Termo % Fator .)
+    LOWEREQUAL      reduce using rule 39 (Termo -> Termo % Fator .)
+    EQUALS          reduce using rule 39 (Termo -> Termo % Fator .)
+    NOTEQUAL        reduce using rule 39 (Termo -> Termo % Fator .)
+    +               reduce using rule 39 (Termo -> Termo % Fator .)
+    -               reduce using rule 39 (Termo -> Termo % Fator .)
+    )               reduce using rule 39 (Termo -> Termo % Fator .)
+    ;               reduce using rule 39 (Termo -> Termo % Fator .)
+    ]               reduce using rule 39 (Termo -> Termo % Fator .)
+    CONJ            reduce using rule 39 (Termo -> Termo % Fator .)
+    DISJ            reduce using rule 39 (Termo -> Termo % Fator .)
+
+
+state 86
+
+    (41) Fator -> ID [ Exp . ]
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    ]               shift and go to state 93
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 87
+
+    (11) Instrucao -> FOR ( Atribuicao ; Condicao . ; Atribuicao ) { BlocoInstrutivo }
+    (20) Condicao -> Condicao . EQUALS Afirmacao
+    (21) Condicao -> Condicao . CONJ Afirmacao
+    (22) Condicao -> Condicao . DISJ Afirmacao
+    (23) Condicao -> Condicao . NOTEQUAL Afirmacao
+
+    ;               shift and go to state 94
+    EQUALS          shift and go to state 44
+    CONJ            shift and go to state 45
+    DISJ            shift and go to state 46
+    NOTEQUAL        shift and go to state 47
+
+
+state 88
+
+    (12) Instrucao -> WHILE ( Condicao ) { . BlocoInstrutivo }
+    (4) BlocoInstrutivo -> .
+    (5) BlocoInstrutivo -> . BlocoInstrutivo Instrucao ;
+
+    }               reduce using rule 4 (BlocoInstrutivo -> .)
+    IF              reduce using rule 4 (BlocoInstrutivo -> .)
+    FOR             reduce using rule 4 (BlocoInstrutivo -> .)
+    WHILE           reduce using rule 4 (BlocoInstrutivo -> .)
+    PRINT           reduce using rule 4 (BlocoInstrutivo -> .)
+    ID              reduce using rule 4 (BlocoInstrutivo -> .)
+
+    BlocoInstrutivo                shift and go to state 95
+
+state 89
+
+    (15) Instrucao -> PRINT ( ID [ Exp . ] )
+    (41) Fator -> ID [ Exp . ]
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    ]               shift and go to state 96
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 90
+
+    (18) Atribuicao -> ID = READ ( ) .
+
+    ;               reduce using rule 18 (Atribuicao -> ID = READ ( ) .)
+    )               reduce using rule 18 (Atribuicao -> ID = READ ( ) .)
+
+
+state 91
+
+    (17) Atribuicao -> ID [ Exp ] = . Exp
+    (19) Atribuicao -> ID [ Exp ] = . READ ( )
+    (34) Exp -> . Exp + Termo
+    (35) Exp -> . Exp - Termo
+    (36) Exp -> . Termo
+    (37) Termo -> . Termo * Fator
+    (38) Termo -> . Termo / Fator
+    (39) Termo -> . Termo % Fator
+    (40) Termo -> . Fator
+    (41) Fator -> . ID [ Exp ]
+    (42) Fator -> . NUM
+    (43) Fator -> . ID
+    (44) Fator -> . ( Exp )
+
+    READ            shift and go to state 98
+    ID              shift and go to state 32
+    NUM             shift and go to state 33
+    (               shift and go to state 23
+
+    Exp                            shift and go to state 97
+    Termo                          shift and go to state 30
+    Fator                          shift and go to state 31
+
+state 92
+
+    (9) Instrucao -> IF ( Condicao ) { BlocoInstrutivo . } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> IF ( Condicao ) { BlocoInstrutivo . }
+    (5) BlocoInstrutivo -> BlocoInstrutivo . Instrucao ;
+    (8) Instrucao -> . Atribuicao
+    (9) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo }
+    (11) Instrucao -> . FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+    (12) Instrucao -> . WHILE ( Condicao ) { BlocoInstrutivo }
+    (13) Instrucao -> . PRINT ( ID )
+    (14) Instrucao -> . PRINT ( Exp )
+    (15) Instrucao -> . PRINT ( ID [ Exp ] )
+    (16) Atribuicao -> . ID = Exp
+    (17) Atribuicao -> . ID [ Exp ] = Exp
+    (18) Atribuicao -> . ID = READ ( )
+    (19) Atribuicao -> . ID [ Exp ] = READ ( )
+
+    }               shift and go to state 99
+    IF              shift and go to state 8
+    FOR             shift and go to state 9
+    WHILE           shift and go to state 10
+    PRINT           shift and go to state 11
+    ID              shift and go to state 12
+
+    Instrucao                      shift and go to state 6
+    Atribuicao                     shift and go to state 7
+
+state 93
+
+    (41) Fator -> ID [ Exp ] .
+
+    *               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    /               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    %               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    >               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    <               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    GREATEQUAL      reduce using rule 41 (Fator -> ID [ Exp ] .)
+    LOWEREQUAL      reduce using rule 41 (Fator -> ID [ Exp ] .)
+    EQUALS          reduce using rule 41 (Fator -> ID [ Exp ] .)
+    NOTEQUAL        reduce using rule 41 (Fator -> ID [ Exp ] .)
+    +               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    -               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    ;               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    )               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    ]               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    CONJ            reduce using rule 41 (Fator -> ID [ Exp ] .)
+    DISJ            reduce using rule 41 (Fator -> ID [ Exp ] .)
+
+
+state 94
+
+    (11) Instrucao -> FOR ( Atribuicao ; Condicao ; . Atribuicao ) { BlocoInstrutivo }
+    (16) Atribuicao -> . ID = Exp
+    (17) Atribuicao -> . ID [ Exp ] = Exp
+    (18) Atribuicao -> . ID = READ ( )
+    (19) Atribuicao -> . ID [ Exp ] = READ ( )
+
+    ID              shift and go to state 12
+
+    Atribuicao                     shift and go to state 100
+
+state 95
+
+    (12) Instrucao -> WHILE ( Condicao ) { BlocoInstrutivo . }
+    (5) BlocoInstrutivo -> BlocoInstrutivo . Instrucao ;
+    (8) Instrucao -> . Atribuicao
+    (9) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo }
+    (11) Instrucao -> . FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+    (12) Instrucao -> . WHILE ( Condicao ) { BlocoInstrutivo }
+    (13) Instrucao -> . PRINT ( ID )
+    (14) Instrucao -> . PRINT ( Exp )
+    (15) Instrucao -> . PRINT ( ID [ Exp ] )
+    (16) Atribuicao -> . ID = Exp
+    (17) Atribuicao -> . ID [ Exp ] = Exp
+    (18) Atribuicao -> . ID = READ ( )
+    (19) Atribuicao -> . ID [ Exp ] = READ ( )
+
+    }               shift and go to state 101
+    IF              shift and go to state 8
+    FOR             shift and go to state 9
+    WHILE           shift and go to state 10
+    PRINT           shift and go to state 11
+    ID              shift and go to state 12
+
+    Instrucao                      shift and go to state 6
+    Atribuicao                     shift and go to state 7
+
+state 96
+
+    (15) Instrucao -> PRINT ( ID [ Exp ] . )
+    (41) Fator -> ID [ Exp ] .
+
+  ! shift/reduce conflict for ) resolved as shift
+    )               shift and go to state 102
+    *               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    /               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    %               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    +               reduce using rule 41 (Fator -> ID [ Exp ] .)
+    -               reduce using rule 41 (Fator -> ID [ Exp ] .)
+
+  ! )               [ reduce using rule 41 (Fator -> ID [ Exp ] .) ]
+
+
+state 97
+
+    (17) Atribuicao -> ID [ Exp ] = Exp .
+    (34) Exp -> Exp . + Termo
+    (35) Exp -> Exp . - Termo
+
+    ;               reduce using rule 17 (Atribuicao -> ID [ Exp ] = Exp .)
+    )               reduce using rule 17 (Atribuicao -> ID [ Exp ] = Exp .)
+    +               shift and go to state 55
+    -               shift and go to state 56
+
+
+state 98
+
+    (19) Atribuicao -> ID [ Exp ] = READ . ( )
+
+    (               shift and go to state 103
+
+
+state 99
+
+    (9) Instrucao -> IF ( Condicao ) { BlocoInstrutivo } . ELSE { BlocoInstrutivo }
+    (10) Instrucao -> IF ( Condicao ) { BlocoInstrutivo } .
+
+    ELSE            shift and go to state 104
+    ;               reduce using rule 10 (Instrucao -> IF ( Condicao ) { BlocoInstrutivo } .)
+
+
+state 100
+
+    (11) Instrucao -> FOR ( Atribuicao ; Condicao ; Atribuicao . ) { BlocoInstrutivo }
+
+    )               shift and go to state 105
+
+
+state 101
+
+    (12) Instrucao -> WHILE ( Condicao ) { BlocoInstrutivo } .
+
+    ;               reduce using rule 12 (Instrucao -> WHILE ( Condicao ) { BlocoInstrutivo } .)
+
+
+state 102
+
+    (15) Instrucao -> PRINT ( ID [ Exp ] ) .
+
+    ;               reduce using rule 15 (Instrucao -> PRINT ( ID [ Exp ] ) .)
+
+
+state 103
+
+    (19) Atribuicao -> ID [ Exp ] = READ ( . )
+
+    )               shift and go to state 106
+
+
+state 104
+
+    (9) Instrucao -> IF ( Condicao ) { BlocoInstrutivo } ELSE . { BlocoInstrutivo }
+
+    {               shift and go to state 107
+
+
+state 105
+
+    (11) Instrucao -> FOR ( Atribuicao ; Condicao ; Atribuicao ) . { BlocoInstrutivo }
+
+    {               shift and go to state 108
+
+
+state 106
+
+    (19) Atribuicao -> ID [ Exp ] = READ ( ) .
+
+    ;               reduce using rule 19 (Atribuicao -> ID [ Exp ] = READ ( ) .)
+    )               reduce using rule 19 (Atribuicao -> ID [ Exp ] = READ ( ) .)
+
+
+state 107
+
+    (9) Instrucao -> IF ( Condicao ) { BlocoInstrutivo } ELSE { . BlocoInstrutivo }
+    (4) BlocoInstrutivo -> .
+    (5) BlocoInstrutivo -> . BlocoInstrutivo Instrucao ;
+
+    }               reduce using rule 4 (BlocoInstrutivo -> .)
+    IF              reduce using rule 4 (BlocoInstrutivo -> .)
+    FOR             reduce using rule 4 (BlocoInstrutivo -> .)
+    WHILE           reduce using rule 4 (BlocoInstrutivo -> .)
+    PRINT           reduce using rule 4 (BlocoInstrutivo -> .)
+    ID              reduce using rule 4 (BlocoInstrutivo -> .)
+
+    BlocoInstrutivo                shift and go to state 109
+
+state 108
+
+    (11) Instrucao -> FOR ( Atribuicao ; Condicao ; Atribuicao ) { . BlocoInstrutivo }
+    (4) BlocoInstrutivo -> .
+    (5) BlocoInstrutivo -> . BlocoInstrutivo Instrucao ;
+
+    }               reduce using rule 4 (BlocoInstrutivo -> .)
+    IF              reduce using rule 4 (BlocoInstrutivo -> .)
+    FOR             reduce using rule 4 (BlocoInstrutivo -> .)
+    WHILE           reduce using rule 4 (BlocoInstrutivo -> .)
+    PRINT           reduce using rule 4 (BlocoInstrutivo -> .)
+    ID              reduce using rule 4 (BlocoInstrutivo -> .)
+
+    BlocoInstrutivo                shift and go to state 110
+
+state 109
+
+    (9) Instrucao -> IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo . }
+    (5) BlocoInstrutivo -> BlocoInstrutivo . Instrucao ;
+    (8) Instrucao -> . Atribuicao
+    (9) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo }
+    (11) Instrucao -> . FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+    (12) Instrucao -> . WHILE ( Condicao ) { BlocoInstrutivo }
+    (13) Instrucao -> . PRINT ( ID )
+    (14) Instrucao -> . PRINT ( Exp )
+    (15) Instrucao -> . PRINT ( ID [ Exp ] )
+    (16) Atribuicao -> . ID = Exp
+    (17) Atribuicao -> . ID [ Exp ] = Exp
+    (18) Atribuicao -> . ID = READ ( )
+    (19) Atribuicao -> . ID [ Exp ] = READ ( )
+
+    }               shift and go to state 111
+    IF              shift and go to state 8
+    FOR             shift and go to state 9
+    WHILE           shift and go to state 10
+    PRINT           shift and go to state 11
+    ID              shift and go to state 12
+
+    Instrucao                      shift and go to state 6
+    Atribuicao                     shift and go to state 7
+
+state 110
+
+    (11) Instrucao -> FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo . }
+    (5) BlocoInstrutivo -> BlocoInstrutivo . Instrucao ;
+    (8) Instrucao -> . Atribuicao
+    (9) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo }
+    (10) Instrucao -> . IF ( Condicao ) { BlocoInstrutivo }
+    (11) Instrucao -> . FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo }
+    (12) Instrucao -> . WHILE ( Condicao ) { BlocoInstrutivo }
+    (13) Instrucao -> . PRINT ( ID )
+    (14) Instrucao -> . PRINT ( Exp )
+    (15) Instrucao -> . PRINT ( ID [ Exp ] )
+    (16) Atribuicao -> . ID = Exp
+    (17) Atribuicao -> . ID [ Exp ] = Exp
+    (18) Atribuicao -> . ID = READ ( )
+    (19) Atribuicao -> . ID [ Exp ] = READ ( )
+
+    }               shift and go to state 112
+    IF              shift and go to state 8
+    FOR             shift and go to state 9
+    WHILE           shift and go to state 10
+    PRINT           shift and go to state 11
+    ID              shift and go to state 12
+
+    Atribuicao                     shift and go to state 7
+    Instrucao                      shift and go to state 6
+
+state 111
+
+    (9) Instrucao -> IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo } .
+
+    ;               reduce using rule 9 (Instrucao -> IF ( Condicao ) { BlocoInstrutivo } ELSE { BlocoInstrutivo } .)
+
+
+state 112
+
+    (11) Instrucao -> FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo } .
+
+    ;               reduce using rule 11 (Instrucao -> FOR ( Atribuicao ; Condicao ; Atribuicao ) { BlocoInstrutivo } .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ) in state 36 resolved as shift
+WARNING: shift/reduce conflict for ) in state 96 resolved as shift

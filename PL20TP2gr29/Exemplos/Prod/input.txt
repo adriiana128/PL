@@ -1,0 +1,14 @@
+int x; int i; int num; int prod;
+
+prod = 1;
+x = read();
+
+for (i = 0; i<x; i = i + 1) {
+
+	num = read();
+
+	prod = prod * num;
+
+};
+
+print(prod);

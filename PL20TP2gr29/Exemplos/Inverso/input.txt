@@ -1,0 +1,18 @@
+int numeros[100]; int i; int num; int cont; int x;
+
+x = read();
+
+for (i = 0; i<x; i = i + 1) {
+
+	num = read();
+
+	numeros[cont] = num;
+	cont = cont + 1;
+
+};
+
+for (i = cont - 1; i>=0; i = i - 1) {
+
+	print(numeros[i]);
+};
+

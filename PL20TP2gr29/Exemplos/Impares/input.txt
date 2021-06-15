@@ -1,0 +1,20 @@
+int impares[100]; int i; int num; int cont; int x;
+
+x = read();
+
+for (i = 0; i<x; i = i + 1) {
+
+	num = read();
+
+	if (num % 2 != 0) {
+		impares[cont] = num;
+		cont = cont + 1;
+	};
+};
+
+for (i = 0; i<cont; i = i + 1) {
+
+	print(impares[i]);
+};
+
+print(cont);

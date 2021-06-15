@@ -1,0 +1,15 @@
+int atual; int i; int verdade; int anterior;
+
+verdade = 1;
+anterior = read();
+
+for (i = 0; i<3; i = i + 1) {
+	
+	atual = read();
+
+	if (atual != anterior) {
+		verdade = 0;
+	};
+};
+
+print(verdade);

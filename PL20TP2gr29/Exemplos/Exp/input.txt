@@ -1,0 +1,12 @@
+int base; int exp; int i; int num;
+
+base = read();
+exp = read();
+
+for (i = 0; i<exp; i = i + 1) {
+
+	num = num * base;
+
+};
+
+print(num);
